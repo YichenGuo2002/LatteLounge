@@ -23,12 +23,8 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/newCoffeeHouse', async (req,res) => {
-    const newCoffeeHouse = new CoffeeHouse({
-        name: 'Hey',
-        price: '1000'
-    })
-    await newCoffeeHouse.save()
-    res.send(newCoffeeHouse)
+   const all = await CoffeeHouse.find({})
+    res.send(all)
 })
 
 app.listen(3000, () => {
