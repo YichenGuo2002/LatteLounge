@@ -1,8 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
+const CoffeeHouse = require('./coffeeHouse')
 
+mongoose.set('strictQuery', true); // make sure only instances of Schema model can be saved
 mongoose.connect('mongodb://localhost:27017/coffee-house')
+//mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection
 db.on('error', () =>{
     console.error.bind(console, 'connection error:')
@@ -17,6 +20,15 @@ app.use(express.static(__dirname + '/public')); // to use html as the main view 
 
 app.get('/', (req, res)=>{
     res.send('Hi.')
+})
+
+app.get('/newCoffeeHouse', async (req,res) => {
+    const newCoffeeHouse = new CoffeeHouse({
+        name: 'Hey',
+        price: '1000'
+    })
+    await newCoffeeHouse.save()
+    res.send(newCoffeeHouse)
 })
 
 app.listen(3000, () => {
