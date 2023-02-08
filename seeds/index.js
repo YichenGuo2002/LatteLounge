@@ -1,3 +1,4 @@
+// run this file to seed instances. Don't run it after running it, because it will delete all other instances.
 const mongoose = require('mongoose')
 const CoffeeHouse = require('../coffeeHouse')
 const {cities, coffeeHouseNames, coffeeHouseReviews, coffeeHouseDescriptions} = require('./seeds')
@@ -18,7 +19,7 @@ const seedDB = async() =>{
     for(let i = 0; i < 50; i++){
         const random1000 = Math.floor(Math.random() * 1000)
         const price = Math.floor(Math.random() * 4 + 1)
-        const priceString = "";
+        let priceString = "";
         for (z = 1; z <= price; z++){
             priceString += "$"
         }

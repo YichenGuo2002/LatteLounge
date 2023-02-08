@@ -14,17 +14,22 @@ db.once('open', () =>{
     console.log('Database connected.')
 })
 
-const app = express();
+const app = express()
 
 app.use(express.static(__dirname + '/public')); // to use html as the main view engine
+// it means to extract all files from '/public' folder and save it to default path
 
 app.get('/', (req, res)=>{
-    res.send('Hi.')
+    res.render('views/index')
+})
+
+app.get('/coffeeHouse', async (req, res) =>{
+    const all = await CoffeeHouse.find({})
+    res.render('views/index')
 })
 
 app.get('/newCoffeeHouse', async (req,res) => {
-   const all = await CoffeeHouse.find({})
-    res.send(all)
+   
 })
 
 app.listen(3000, () => {
