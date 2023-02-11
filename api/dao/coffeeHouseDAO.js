@@ -17,7 +17,7 @@ export default class coffeeHouseDAO{
     page = 0,
     coffeeHousesPerPage = 20
    } = {}){
-    let strictQuery
+    let query = {}
     if(filters){ // Mongodb queries
         if('name' in filters){
             query = {$text: {$search: filters['name']}}
@@ -31,16 +31,17 @@ export default class coffeeHouseDAO{
     }
 
     let cursor
+    
     try{
-        cursor = await coffeeHouses.find(query)
-    }catch(e){
-        console.error(`Unable to issue find command, ${e}`)
+        cursor = await coffeeHouses
+        .find(query).limit(coffeeHousesPerPage).skip(coffeeHousesPerPage * page)
+    } catch(e){
+        console.error(`Unable to issur find command, ${e}`)
         return {coffeeHousesList: [], totalNumberCoffeeHouses: 0}
     }
-    const displayCursor = cursor.limit(coffeeHousesPerPage).skip(coffeeHousesPerPage * page)
-   
+
     try{
-        const coffeeHousesList = await displayCursor.toArray()
+        const coffeeHousesList = [...cursor] // save all returned results in array
         const totalNumberCoffeeHouses = await coffeeHouses.countDocuments(query)
         return {coffeeHousesList, totalNumberCoffeeHouses}
     } catch(e){

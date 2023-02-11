@@ -1,14 +1,9 @@
 import express from 'express'
+import coffeeHouseCtrl from "./coffeeHouse.controller.js"
 
 const router = express.Router()
 
-router.route('/').get((req, res) =>{
-    res.send("Hello world!")
-})
-
-router.route('/l',(req, res) =>{
-    
-})
+router.route('/').get(coffeeHouseCtrl.apiGetCoffeeHouse)
 
 export default router
 
