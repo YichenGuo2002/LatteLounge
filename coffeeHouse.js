@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const coffeeHouseSchema = new Schema({
@@ -8,4 +8,4 @@ const coffeeHouseSchema = new Schema({
     location: String,
     review: String
 })
-module.exports = mongoose.model('CoffeeHouse', coffeeHouseSchema)
+export default mongoose.model('CoffeeHouse', coffeeHouseSchema)

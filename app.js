@@ -1,7 +1,15 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const path = require('path')
-const CoffeeHouse = require('./coffeeHouse')
+import express from 'express'
+import mongoose from 'mongoose'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import coffeeHouseCollection from './coffeeHouse.js'
+import coffeeHouseRoutes from './api/coffeeHouse.route.js'
+import coffeeHouseDAO from './api/dao/coffeeHouseDAO.js'
+const port = process.env.PORT||3000
+const _filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(_filename)
 
 mongoose.set('strictQuery', true); // make sure only instances of Schema model can be saved
 mongoose.connect('mongodb://localhost:27017/coffee-house')
@@ -15,6 +23,9 @@ db.once('open', () =>{
 })
 
 const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 app.use(express.static(__dirname + '/public')); // to use html as the main view engine
 // it means to extract all files from '/public' folder and save it to default path
@@ -33,17 +44,18 @@ app.get('/newCoffeeHouse', async (req,res) => {
    
 })*/
 
-app.get('/api/index', async (req, res) => {
-    const all = await CoffeeHouse.find({})
+app.use('/api/v1/coffeeHouse', coffeeHouseRoutes) // set up routes
+
+app.get('/api/v1/coffeeHouseGetAll', async (req, res) => {
+    const all = await coffeeHouseCollection.find({})
     res.json({data: all});
     console.log("Returned all data.")
   });
 
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/src/index.html'));
-});
+app.use('*', (req, res) =>{ // '*' means going to a route not in our route file
+    res.status(404).json({error: 'Not found.'})
+}); 
   
-
-app.listen(3000, () => {
-    console.log('Listening on port 3000 now.')
+app.listen(port, () => {
+    console.log(`Listening on port ${port} now.`)
 })
