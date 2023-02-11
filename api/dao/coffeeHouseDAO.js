@@ -19,13 +19,13 @@ export default class coffeeHouseDAO{
    } = {}){
     let query = {}
     if(filters){ // Mongodb queries
-        if('name' in filters){
-            query = {$text: {$search: filters['name']}}
+        if(filters['name']){
+            query = {'name': {$eq: filters['name']}}
         }
-        else if('price' in filters){
-            query = {$text: {$eq: filters['price']}}
+        else if(filters['price']){
+            query = {'price': {$eq: filters['price']}}
         }
-        else if('location' in filters){
+        else if(filters['location']){
             query = {$text: {$search: filters['location']}}
         }
     }
