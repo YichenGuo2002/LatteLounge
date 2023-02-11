@@ -19,6 +19,7 @@ const app = express()
 app.use(express.static(__dirname + '/public')); // to use html as the main view engine
 // it means to extract all files from '/public' folder and save it to default path
 
+/*
 app.get('/', (req, res)=>{
     res.render('views/index')
 })
@@ -30,7 +31,18 @@ app.get('/coffeeHouse', async (req, res) =>{
 
 app.get('/newCoffeeHouse', async (req,res) => {
    
-})
+})*/
+
+app.get('/api/index', async (req, res) => {
+    const all = await CoffeeHouse.find({})
+    res.json({data: all});
+    console.log("Returned all data.")
+  });
+
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/src/index.html'));
+});
+  
 
 app.listen(3000, () => {
     console.log('Listening on port 3000 now.')
