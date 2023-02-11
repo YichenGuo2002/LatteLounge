@@ -1,11 +1,13 @@
 // run this file to seed instances. Don't run it after running it, because it will delete all other instances.
-const mongoose = require('mongoose')
-const CoffeeHouse = require('../coffeeHouse')
-const {cities, coffeeHouseNames, coffeeHouseReviews, coffeeHouseDescriptions} = require('./seeds')
+import mongoose from 'mongoose' 
+import CoffeeHouse from '../coffeeHouse.js'
+import dotenv from 'dotenv'
+dotenv.config()
+import {cities, coffeeHouseNames, coffeeHouseReviews, coffeeHouseDescriptions} from './seeds.js'
 
 mongoose.set('strictQuery', true); // make sure only instances of Schema model can be saved
-mongoose.connect('mongodb://localhost:27017/coffee-house')
-//mongoose.connect(process.env.MONGO_URL);
+//mongoose.connect('mongodb://localhost:27017/coffee-house')
+mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection
 db.on('error', () =>{
     console.error.bind(console, 'connection error:')
@@ -20,7 +22,7 @@ const seedDB = async() =>{
         const random1000 = Math.floor(Math.random() * 1000)
         const price = Math.floor(Math.random() * 4 + 1)
         let priceString = "";
-        for (z = 1; z <= price; z++){
+        for (let z = 1; z <= price; z++){
             priceString += "$"
         }
         

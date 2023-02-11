@@ -7,19 +7,21 @@ import dotenv from 'dotenv'
 import coffeeHouseCollection from './coffeeHouse.js'
 import coffeeHouseRoutes from './api/coffeeHouse.route.js'
 import coffeeHouseDAO from './api/dao/coffeeHouseDAO.js'
+dotenv.config()
 const port = process.env.PORT||3000
 const _filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(_filename)
 
 mongoose.set('strictQuery', true); // make sure only instances of Schema model can be saved
-mongoose.connect('mongodb://localhost:27017/coffee-house')
-//mongoose.connect(process.env.MONGO_URL);
+//mongoose.connect('mongodb://localhost:27017/coffee-house')
+mongoose.connect(process.env.MONGO_URL);
 const db = mongoose.connection
 db.on('error', () =>{
     console.error.bind(console, 'connection error:')
 })
-db.once('open', () =>{
+db.once('open', async () =>{
     console.log('Database connected.')
+    await coffeeHouseDAO.injectDB(coffeeHouseCollection)
 })
 
 const app = express()

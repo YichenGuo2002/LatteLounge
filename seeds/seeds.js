@@ -1,4 +1,4 @@
-module.exports.cities = [
+export const cities = [
     {
         city: "New York",
         growth_from_2000_to_2013: "4.8%",
@@ -9001,7 +9001,7 @@ module.exports.cities = [
     },
 ];
 
-module.exports.coffeeHouseReviews = [
+export const coffeeHouseReviews = [
     "Amazing coffee and friendly staff! I'll be back!",
     "Not impressed. The coffee was just okay and the atmosphere was lacking.",
     "Great place for a quick caffeine fix. The coffee was good and the staff was friendly.",
@@ -9059,7 +9059,7 @@ module.exports.coffeeHouseReviews = [
     "Comfy seating and good drinks.",  
     "A bit pricey, but worth it for the quality."];
 
-module.exports.coffeeHouseDescriptions = [
+    export const coffeeHouseDescriptions = [
     "Get your daily dose of caffeine at our cozy coffee house!",
     "Experience the art of coffee-making at our rustic coffee shop.",
     "Indulge in artisan coffee and tasty treats at our modern cafe.",
@@ -9111,4 +9111,4 @@ module.exports.coffeeHouseDescriptions = [
     "A hip coffee joint with a menu of artisanal and unique drinks.",
     "A bustling coffee bar with a focus on community and connection."]
 
-module.exports.coffeeHouseNames = [    "Bean Scene",    "Java Joint",    "Roast & Toast",    "The Daily Grind",    "Brew Crew",    "The Coffee Spot",    "Sips & Beans",    "Caffeine Central",    "The Roasters",    "The Steaming Cup",    "The Pour House",    "The Coffee Collective",    "The Java House",    "The Espresso Bar",    "The Beanery",    "The Daily Brew",    "The Caffeine Fix",    "The Coffee Shack",    "The Java Joint",    "The Caffeine Cafe",    "The Roast House",    "The Steamy Cup",    "The Mocha Madness",    "The Java Express",    "The Coffee Connection",    "The Caffeine Spot",    "The Roasters Retreat",    "The Espresso Experience",    "The Bean Scene",    "The Java House",    "The Daily Drip",    "The Brew Barn",    "The Caffeine Haus",    "The Roasting Room",    "The Espresso Emporium",    "The Coffee Cartel",    "The Java Joint",    "The Steamy Beans",    "The Pour Over Place",    "The Caffeine Crush",    "Roast & Toast",    "The Espresso Express",    "The Bean Scene",    "The Java House",    "The Daily Grind",    "Brew Crew",    "The Coffee Connection",    "The Caffeine Spot",    "The Roasters Retreat",    "The Steaming Cup"];
+    export const coffeeHouseNames = [    "Bean Scene",    "Java Joint",    "Roast & Toast",    "The Daily Grind",    "Brew Crew",    "The Coffee Spot",    "Sips & Beans",    "Caffeine Central",    "The Roasters",    "The Steaming Cup",    "The Pour House",    "The Coffee Collective",    "The Java House",    "The Espresso Bar",    "The Beanery",    "The Daily Brew",    "The Caffeine Fix",    "The Coffee Shack",    "The Java Joint",    "The Caffeine Cafe",    "The Roast House",    "The Steamy Cup",    "The Mocha Madness",    "The Java Express",    "The Coffee Connection",    "The Caffeine Spot",    "The Roasters Retreat",    "The Espresso Experience",    "The Bean Scene",    "The Java House",    "The Daily Drip",    "The Brew Barn",    "The Caffeine Haus",    "The Roasting Room",    "The Espresso Emporium",    "The Coffee Cartel",    "The Java Joint",    "The Steamy Beans",    "The Pour Over Place",    "The Caffeine Crush",    "Roast & Toast",    "The Espresso Express",    "The Bean Scene",    "The Java House",    "The Daily Grind",    "Brew Crew",    "The Coffee Connection",    "The Caffeine Spot",    "The Roasters Retreat",    "The Steaming Cup"];
