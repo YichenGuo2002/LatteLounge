@@ -1,6 +1,6 @@
 // run this file to seed instances. Don't run it after running it, because it will delete all other instances.
 import mongoose from 'mongoose' 
-import CoffeeHouse from '../coffeeHouse.js'
+import {coffeeHouseCollection, reviewCollection} from '../coffeeHouse.js'
 import dotenv from 'dotenv'
 dotenv.config()
 import {cities, coffeeHouseNames, coffeeHouseReviews, coffeeHouseDescriptions} from './seeds.js'
@@ -17,7 +17,7 @@ db.once('open', () =>{
 })
 
 const seedDB = async() =>{
-    await CoffeeHouse.deleteMany({}) // delete all instances
+    await coffeeHouseCollection.deleteMany({}) // delete all instances
     for(let i = 0; i < 50; i++){
         const random1000 = Math.floor(Math.random() * 1000)
         const price = Math.floor(Math.random() * 4 + 1)
@@ -26,14 +26,14 @@ const seedDB = async() =>{
             priceString += "$"
         }
         
-        const c = new CoffeeHouse({
+        const newCoffeeHouse = new coffeeHouseCollection({
             name: `${coffeeHouseNames[i]}`,
             price: `${priceString}`,
             description: `${coffeeHouseDescriptions[i]}`,
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             review:`${coffeeHouseReviews[i]}`
         })
-        await c.save()
+        await newCoffeeHouse.save()
     }
 }
 seedDB()

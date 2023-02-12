@@ -1,3 +1,5 @@
+import mongodb from "mongodb"
+const ObjectId = mongodb.ObjectID
 let coffeeHouses
 
 export default class coffeeHouseDAO{
@@ -47,6 +49,61 @@ export default class coffeeHouseDAO{
     } catch(e){
         console.error(`Unable to convert cursor to array or problem counting documents, ${e}`)
         return {coffeeHousesList: [], totalNumberCoffeeHouses: 0}
+    }
+   }
+
+   static async getCoffeeHouseById(id){
+    try{
+        const pipeline = [
+            {
+                $match: {
+                    _id: new ObjectId(id)
+                }
+            },
+            {
+                $lookup:{
+                    from: "reviews",
+                    let:{
+                        id:"$_id"
+                    },
+                    pipeline:[
+                        {
+                            $match:{
+                                $expr:{
+                                    $eq: ["$coffee_house_id", "$$id"]
+                                }
+                            }
+                        },
+                        {
+                            $sort:{
+                                date:-1
+                            }
+                        }
+                    ],
+                    as: "reviews"
+                }
+            },
+            {
+                $addFields:{
+                    reviews:"$reviews"
+                }
+            }
+        ]
+        return await coffeeHouses.aggregate(pipeline)
+    }catch(e){
+        console.log(`Something went wrong in getCoffeeHouseById: ${e}`)
+        throw(e)
+    }
+   }
+
+   static async getCoffeeHouseByPrice(){
+    let price = []
+    try{
+        price = await coffeeHouses.distinct("price")
+        return price
+    }catch(e){
+        console.log(`Something went wrong in get coffee house by prices: ${e}`)
+        return price
     }
    }
 }

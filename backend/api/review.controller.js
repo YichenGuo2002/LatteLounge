@@ -1,4 +1,4 @@
-import ReviewDAO from "../dao/reviewDAO.js"
+import ReviewDAO from "./dao/reviewDAO.js"
 
 export default class reviewController{
     static async apiPostReview(req, res, next){
@@ -19,6 +19,7 @@ export default class reviewController{
             )
             res.json({status: "success"})
         }catch(e){
+            console.log(e)
             res.status(500).json({error: e.message})
         }
     }
@@ -29,7 +30,7 @@ export default class reviewController{
             const text = req.body.text
             const date = new Date()
 
-            const reviewResponse = await ReviewsDAO.updateReview(
+            const reviewResponse = await ReviewDAO.updateReview(
                 reviewId,
                 req.body.user_id,
                 text,
@@ -55,7 +56,7 @@ export default class reviewController{
 
     static async apiDeleteReview(req, res, next){
         try{
-            const reviewId = req.query.review_id
+            const reviewId = req.query.id
             const userId = req.body.user_id
             console.log(reviewId)
             const reviewResponse = await ReviewDAO.deleteReview(

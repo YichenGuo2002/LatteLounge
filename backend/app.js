@@ -4,9 +4,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import coffeeHouseCollection from './coffeeHouse.js'
+import {coffeeHouseCollection, reviewCollection} from './coffeeHouse.js'
 import coffeeHouseRoutes from './api/coffeeHouse.route.js'
 import coffeeHouseDAO from './api/dao/coffeeHouseDAO.js'
+import reviewDAO from './api/dao/reviewDAO.js'
 dotenv.config()
 const port = process.env.PORT||3000
 const _filename = fileURLToPath(import.meta.url)
@@ -22,6 +23,7 @@ db.on('error', () =>{
 db.once('open', async () =>{
     console.log('Database connected.')
     await coffeeHouseDAO.injectDB(coffeeHouseCollection)
+    await reviewDAO.injectDB(reviewCollection)
 })
 
 const app = express()

@@ -12,5 +12,8 @@ router
 .put(reviewCtrl.apiUpdateReview)
 .delete(reviewCtrl.apiDeleteReview)
 
+router.route("/id/:id").get(coffeeHouseCtrl.apiGetCoffeeHouseById)
+router.route("/price").get(coffeeHouseCtrl.apiGetCoffeeHouseByPrice)
+
 export default router
 

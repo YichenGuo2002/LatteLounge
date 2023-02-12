@@ -31,4 +31,31 @@ export default class coffeeHouseCtrl{
         }
         res.json(response)
     }
+
+    static async apiGetCoffeeHouseById(req, res, next){
+        try{
+            let id = req.params.id|| {} // req.params is something right after url and a slash
+            //req.query is after the ? in the url
+            //req.body is in the body of the request
+            let coffeeHouse = await coffeeHouseDAO.getCoffeeHouseById(id)
+            if(!coffeeHouse){
+                res.status(404).json({error: "Not found"})
+                return
+            }
+            res.json(coffeeHouse)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error:e})
+        }
+    }
+
+    static async apiGetCoffeeHouseByPrice(req, res, next){
+        try{
+            let price = await coffeeHouseDAO.getCoffeeHouseByPrice()
+            res.json(price)
+        } catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error:e})
+        }
+    }
 }
