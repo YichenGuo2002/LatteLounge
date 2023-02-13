@@ -1,7 +1,7 @@
 import React from "react"
 import {Routes, Route, Link, useParams} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/js/src/collapse.js";
+import 'bootstrap/dist/js/bootstrap.js';
 
 import AddReview from "./components/addReview"
 import CoffeeHouseList from "./components/coffeeHouseList"

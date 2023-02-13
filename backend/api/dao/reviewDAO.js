@@ -57,7 +57,5 @@ export default class ReviewDAO{
         console.error(`Unable to delete review: ${e}`)
         return {error:e}
     }
-
-    
    }
 }
