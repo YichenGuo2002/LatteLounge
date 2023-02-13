@@ -1,5 +1,5 @@
 import React from "react"
-import {Routes, Route, Link} from "react-router-dom"
+import {Routes, Route, Link, useParams} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/js/src/collapse.js";
 
@@ -18,6 +18,21 @@ function App() {
   async function logout(){
     setUser(null)
   }
+
+  const AddReviewWrapper = () => {
+    const { user } = useParams();
+    return <AddReview user={user} />;
+  };
+
+  const CoffeeHouseWrapper = () => {
+    const { user } = useParams();
+    return <CoffeeHouse user={user} />;
+  };
+
+  const LoginWrapper = () => {
+    const { login } = useParams();
+    return <Login login={login} />;
+  };
 
   return (
     <div>
@@ -60,17 +75,15 @@ function App() {
               <Route exact path = "/coffeeHouse" element = {<CoffeeHouseList/>}/>
               <Route
                 path = "/coffeeHouse/:id/review"
-                render={(props) => (<AddReview {...props} user={user} />)}
+                element={<AddReview/>}
                 />  
               <Route
                 path = "/coffeeHouse/:id"
-                render={(props) => (<CoffeeHouse {...props} user={user} />)}
+                element={<CoffeeHouseWrapper/>}
               />
               <Route
                 path="/login"
-                element={ 
-                  <Login/>
-                }
+                element={<LoginWrapper/>}
               />
         </Routes>
       </div>
