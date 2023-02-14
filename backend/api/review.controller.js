@@ -58,13 +58,14 @@ export default class reviewController{
         try{
             const reviewId = req.query.id
             const userId = req.body.user_id
-            console.log(reviewId)
+            console.log("Delete review id ", reviewId, " from user id ", userId)
             const reviewResponse = await ReviewDAO.deleteReview(
                 reviewId,
                 userId
             )
             res.json({status: "success"})
         }catch(e){
+            console.log("wrong")
             res.status(500).json({error: e.message})
         }
     }

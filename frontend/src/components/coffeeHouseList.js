@@ -40,7 +40,6 @@ const CoffeeHouseList = (props) => {
   const retrievePrice = () =>{
     CoffeeHouseDataService.getPrice()
     .then(response =>{
-      console.log("Try here too", response.data)
       setPrice(["All Price", ...response.data])
     })
     .catch(e =>{
@@ -82,8 +81,8 @@ const CoffeeHouseList = (props) => {
   const cardDeckWrapper = () =>{
    const cardDeck = coffeeHouse?.map((eachCoffeeHouse, index) => {
       return(
-        <div className = "col">
-          <div className="card h-100 border-primary dark mb-3"  key={index}>
+        <div className = "col" key = {index}>
+          <div className="card h-100 border-primary dark mb-3">
         <img className="card-img-top" src={cafe} alt="Card cap"/>
           <div className="card-body text-dark">
         <h5 className="card-title">{eachCoffeeHouse.name}</h5>

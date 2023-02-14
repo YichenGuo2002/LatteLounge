@@ -20,17 +20,14 @@ function App() {
   }
 
   const AddReviewWrapper = () => {
-    const { user } = useParams();
     return <AddReview user={user} />;
   };
 
   const CoffeeHouseWrapper = () => {
-    const { user } = useParams();
     return <CoffeeHouse user={user} />;
   };
 
   const LoginWrapper = () => {
-    const { login } = useParams();
     return <Login login={login} />;
   };
 
@@ -75,7 +72,7 @@ function App() {
               <Route exact path = "/coffeeHouse" element = {<CoffeeHouseList/>}/>
               <Route
                 path = "/coffeeHouse/:id/review"
-                element={<AddReview/>}
+                element={<AddReviewWrapper/>}
                 />  
               <Route
                 path = "/coffeeHouse/:id"
