@@ -9,8 +9,18 @@ class CoffeeHouseDataService{
         return http.get(`/id/${id}`)
     }
 
-    find(query, by = "name", page = 0){
-        return http.get(`?${by}=${query}&page=${page}`)
+    find(query, page = 0){
+        if(query){
+            let queryString = ""
+            for (const property in query) {
+                queryString += `${property}=${query[property]}&`;
+            }
+            console.log("Query String is", queryString)
+            return http.get(`?${queryString}page=${page}`)
+        }
+        else{
+            return http.get(`?page=${page}`)
+        }
     }
 
     createReview(data){

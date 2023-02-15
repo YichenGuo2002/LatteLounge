@@ -9,10 +9,10 @@ export default class coffeeHouseCtrl{
         if(req.query.name){
             filters.name = req.query.name
         }
-        else if(req.query.price){
+        if(req.query.price){
             filters.price = req.query.price
         }
-        else if(req.query.location){
+        if(req.query.location){
             filters.location = req.query.location
         }
 

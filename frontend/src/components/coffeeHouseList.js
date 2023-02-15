@@ -3,33 +3,37 @@ import CoffeeHouseDataService from "../services/coffeeHouse"
 import {Link} from "react-router-dom"
 import "../index.css"
 import cafe from "../Cafe_de_Flore.jpg"
+import paginateResult from "../services/pagination"
 
 const CoffeeHouseList = (props) => {
   const [coffeeHouse, setCoffeeHouse] = useState([])
   const [searchName, setSearchName] = useState("")
   const [searchLocation, setSearchLocation] = useState("")
   const [searchPrice, setSearchPrice] = useState("")
+  const [page, setPage] = useState(0)
+  const [totalResults, setTotalResults] = useState(0)
+  const [query, setQuery] = useState({})
   const [price, setPrice] = useState(["All Price"])
 
   const onChangeSearchName = e => {
-    const searchName = e.target.value
-    setSearchName(searchName)
+    const newSearchName = e.target.value
+    setSearchName(newSearchName)
   }
 
   const onChangeSearchLocation = e => {
-    const searchLocation = e.target.value
-    setSearchLocation(searchLocation)
+    const newSearchLocation = e.target.value
+    setSearchLocation(newSearchLocation)
   }
 
   const onChangeSearchPrice = e =>{
-    const searchPrice = e.target.value
-    setSearchPrice(searchPrice)
+    const newSearchPrice = e.target.value
+    setSearchPrice(newSearchPrice)
   }
 
   const retrieveCoffeeHouse = () =>{
     CoffeeHouseDataService.getAll()
     .then(response =>{
-      console.log( response.data)
+      console.log(response.data)
       setCoffeeHouse(response.data.coffee_houses)
     })
     .catch(e =>{
@@ -51,31 +55,28 @@ const CoffeeHouseList = (props) => {
     retrieveCoffeeHouse()
   }
 
-  const find = (query, by) => {
-    CoffeeHouseDataService.find(query, by)
+  const find = (page = 0) => {
+    console.log("Find ", query)
+    CoffeeHouseDataService.find(query, page)
     .then(response => {
       console.log(response.data)
       setCoffeeHouse(response.data.coffee_houses)
+      setPage(response.data.page)
+      setTotalResults(response.data.total_results)
     })
     .catch(e =>{
       console.log(e)
     })
   }
 
-  const findByName = () => {
-    find(searchName, "name")
-  }
-
-  const findByLocation = () =>{
-    find(searchLocation, "location")
-  }
-
-  const findByPrice = () =>{
-    if (searchPrice === "All Price"){
-      refreshList()
-    }else{
-      find(searchPrice, "price")
+  const findBy = () => {
+    const newQuery = {}
+    if(searchName) newQuery.name = searchName
+    if(searchLocation) newQuery.location = searchLocation
+    if (searchPrice && searchPrice !== "All Price"){
+      newQuery.price = searchPrice
     }
+    setQuery(newQuery)
   }
 
   const cardDeckWrapper = () => {
@@ -99,14 +100,21 @@ const CoffeeHouseList = (props) => {
     return cardDeck
   }
 
+  const setPagination = () => {
+    let result = paginateResult(totalResults, page)
+  }
+
   useEffect(() => {
     retrieveCoffeeHouse()
     retrievePrice()
   }, [])
 
+  useEffect(() =>{
+    find()
+  }, [query])
+
   return (
     <body className = "container mt-3">
-<div>
 <div className="input-group">
   <input 
   type="text" 
@@ -114,9 +122,6 @@ const CoffeeHouseList = (props) => {
   value={searchName}
   placeholder="Name"
   onChange={onChangeSearchName}/>
-  <div className="input-group-append">
-    <button className="btn btn-outline-primary" onClick={findByName} type="button">Search by Name</button>
-  </div>
 </div>
 <div className="input-group">
   <input 
@@ -125,9 +130,6 @@ const CoffeeHouseList = (props) => {
   value={searchLocation}
   placeholder="Location"
   onChange={onChangeSearchLocation}/>
-  <div className="input-group-append">
-    <button className="btn btn-outline-primary" onClick={findByLocation} type="button">Search by Location</button>
-  </div>
 </div>
 <div className="input-group mb-3">
   <select className="form-select" aria-label="Default select example" onChange = {onChangeSearchPrice}>
@@ -135,10 +137,10 @@ const CoffeeHouseList = (props) => {
     return (<option value = {eachPrice.toString()} key={index}>{eachPrice.toString()}</option>)
   })}
 </select>
-<div className="input-group-append">
-    <button className="btn btn-outline-primary" onClick={findByPrice} type="button">Search by Price</button>
-  </div>
 </div>
+<div className="input-group mb-3">
+    <button className="btn btn-outline-primary" onClick={findBy} type="button">Filter</button>
+  </div>
 
 <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 
@@ -149,7 +151,7 @@ const CoffeeHouseList = (props) => {
 
 <div className = "container mt-3">
   <nav aria-label="Page navigation example">
-    <ul className="pagination justify-content-center">
+    <ul className="pagination justify-content-center text-center align-middle">
       <li className="page-item disabled">
         <a className="page-link">Previous</a>
       </li>
@@ -159,11 +161,10 @@ const CoffeeHouseList = (props) => {
       <li className="page-item">
         <a className="page-link" href="#">Next</a>
       </li>
+      <li className="page-item disabled"><a className="page-link" >We are at page {page}</a></li>
     </ul>
   </nav>
 </div>
-
-    </div>
     </body>
   );
 }
