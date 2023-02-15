@@ -74,12 +74,10 @@ const CoffeeHouse = (props) => {
                           {props.user && props.user.id === review.user_id &&
                             <div className = "row">
                               <a onClick = {() => deleteReview(review._id, index)} className = "btn btn-primary">Delete Review</a>
-                              <Link to={{
-                                pathname:"/coffeeHouse/"+id+"/review",
-                                state:{
-                                  currentReview:review
-                                }
-                              }} className = "btn btn-primary">Edit Review</Link>
+                              <Link
+                              to={"/coffeeHouse/"+id+"/review"}
+                              state={{currentReview: review}}
+                              className = "btn btn-primary">Edit Review</Link>
                             </div>
                           }
                         </div>

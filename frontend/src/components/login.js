@@ -24,16 +24,14 @@ const Login = (props) => {
   return (
     <div className="App">
       <form>
-      <div className="form-row">
-        <div className="form-group col-md-6">
-          <label htmlFor="inputName">First Name</label>
+      <div className="form-group">
+          <label htmlFor="inputName">Name</label>
           <input type="text" 
           className="form-control" 
           id="inputName" 
           name="name" 
           value={user.name}
           onChange={handleInputChange}/>
-        </div>
       </div>
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Password</label>
@@ -45,6 +43,7 @@ const Login = (props) => {
           onChange={handleInputChange}
           />
       </div>
+      <p>  </p>
       <button type="submit" className="btn btn-primary" onClick={loginFunc}>Login</button>
     </form>
     </div>
