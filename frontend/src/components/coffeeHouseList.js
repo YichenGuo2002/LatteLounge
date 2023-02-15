@@ -10,10 +10,14 @@ const CoffeeHouseList = (props) => {
   const [searchName, setSearchName] = useState("")
   const [searchLocation, setSearchLocation] = useState("")
   const [searchPrice, setSearchPrice] = useState("")
-  const [page, setPage] = useState(0)
-  const [totalResults, setTotalResults] = useState(0)
+  const [page, setPage] = useState(1)
+  const [totalResults, setTotalResults] = useState()
   const [query, setQuery] = useState({})
   const [price, setPrice] = useState(["All Price"])
+  const [pagination, setPagination] = useState({
+    totalPages:3,
+    pages:[1,2,3]
+  })
 
   const onChangeSearchName = e => {
     const newSearchName = e.target.value
@@ -35,6 +39,8 @@ const CoffeeHouseList = (props) => {
     .then(response =>{
       console.log(response.data)
       setCoffeeHouse(response.data.coffee_houses)
+      setPage(response.data.page + 1)
+      setTotalResults(response.data.total_results)
     })
     .catch(e =>{
       console.log(e)
@@ -55,13 +61,12 @@ const CoffeeHouseList = (props) => {
     retrieveCoffeeHouse()
   }
 
-  const find = (page = 0) => {
-    console.log("Find ", query)
-    CoffeeHouseDataService.find(query, page)
+  const find = (page = 1) => {
+    CoffeeHouseDataService.find(query, page - 1)
     .then(response => {
       console.log(response.data)
       setCoffeeHouse(response.data.coffee_houses)
-      setPage(response.data.page)
+      setPage(response.data.page + 1)
       setTotalResults(response.data.total_results)
     })
     .catch(e =>{
@@ -100,8 +105,41 @@ const CoffeeHouseList = (props) => {
     return cardDeck
   }
 
-  const setPagination = () => {
-    let result = paginateResult(totalResults, page)
+  const paginationWrapper = () =>{
+    let pagination = (
+      <>
+      {page === 1?(
+        <li className="page-item disabled">
+          <a className="page-link">Previous</a>
+        </li>
+      ):(
+        <li className="page-item">
+          <a className="page-link" onClick={find(page-1)}>Previous</a>
+        </li>
+      )}
+      {
+        pagination.pages.map((eachPage, index) =>{
+          return(
+            <li className="page-item" key={index}><a className="page-link" onClick={find(eachPage)}>{eachPage}</a></li>
+          )
+        }
+        )
+      }
+      {page === pagination.totalPages?(
+        <li className="page-item disabled">
+          <a className="page-link">Next</a>
+        </li>
+      ):(
+        <li className="page-item">
+          <a className="page-link" onClick={find(page+1)}>Next</a>
+        </li>
+      )}
+      </>
+    )
+  }
+
+  const retrievePagination = () => {
+    setPagination(paginateResult(totalResults, page))
   }
 
   useEffect(() => {
@@ -112,6 +150,11 @@ const CoffeeHouseList = (props) => {
   useEffect(() =>{
     find()
   }, [query])
+
+  useEffect(() =>{
+    retrievePagination()
+  }, [page, totalResults])
+
 
   return (
     <body className = "container mt-3">
@@ -142,6 +185,7 @@ const CoffeeHouseList = (props) => {
     <button className="btn btn-outline-primary" onClick={findBy} type="button">Filter</button>
   </div>
 
+<p>Found {totalResults} search results, {pagination.totalPages} pages.</p>
 <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 
     {cardDeckWrapper()}
@@ -152,15 +196,7 @@ const CoffeeHouseList = (props) => {
 <div className = "container mt-3">
   <nav aria-label="Page navigation example">
     <ul className="pagination justify-content-center text-center align-middle">
-      <li className="page-item disabled">
-        <a className="page-link">Previous</a>
-      </li>
-      <li className="page-item"><a className="page-link" href="#">1</a></li>
-      <li className="page-item"><a className="page-link" href="#">2</a></li>
-      <li className="page-item"><a className="page-link" href="#">3</a></li>
-      <li className="page-item">
-        <a className="page-link" href="#">Next</a>
-      </li>
+      {paginationWrapper()}
       <li className="page-item disabled"><a className="page-link" >We are at page {page}</a></li>
     </ul>
   </nav>

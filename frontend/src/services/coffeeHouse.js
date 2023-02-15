@@ -15,7 +15,6 @@ class CoffeeHouseDataService{
             for (const property in query) {
                 queryString += `${property}=${query[property]}&`;
             }
-            console.log("Query String is", queryString)
             return http.get(`?${queryString}page=${page}`)
         }
         else{
