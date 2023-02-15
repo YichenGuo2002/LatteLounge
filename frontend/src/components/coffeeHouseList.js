@@ -78,7 +78,7 @@ const CoffeeHouseList = (props) => {
     }
   }
 
-  const cardDeckWrapper = () =>{
+  const cardDeckWrapper = () => {
    const cardDeck = coffeeHouse?.map((eachCoffeeHouse, index) => {
       return(
         <div className = "col" key = {index}>
@@ -94,8 +94,7 @@ const CoffeeHouseList = (props) => {
         </Link>
       </div>
     </div>
-    </div>
-      )
+    </div>)
     })
     return cardDeck
   }
@@ -106,6 +105,7 @@ const CoffeeHouseList = (props) => {
   }, [])
 
   return (
+    <body className = "container mt-3">
 <div>
 <div className="input-group">
   <input 
@@ -164,6 +164,7 @@ const CoffeeHouseList = (props) => {
 </div>
 
     </div>
+    </body>
   );
 }
 

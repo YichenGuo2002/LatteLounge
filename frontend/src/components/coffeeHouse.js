@@ -47,7 +47,7 @@ const CoffeeHouse = (props) => {
   }
 
   return(
-    <div>
+    <body className = "container mt-3">
       {coffeeHouse?(
         <div className="card mb-3">
         <img className="card-img-top" src={cafe} alt="Card cap"/>
@@ -100,7 +100,7 @@ const CoffeeHouse = (props) => {
           <p>No restaurant selected.</p>
         </div>
       )}
-    </div>
+    </body>
   )
 }
 

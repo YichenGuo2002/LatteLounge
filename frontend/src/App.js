@@ -37,7 +37,7 @@ function App() {
     <div>
       <nav className ="navbar navbar-expand-lg bg-primary-subtle">
   <div className ="container-fluid">
-    <img src={logo} width="40" height="40" class="d-inline-block" alt="Logo"/>
+    <a href = {"/"}><img src={logo} width="40" height="40" class="d-inline-block" alt="Logo"/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span className ="navbar-toggler-icon"></span>
     </button>
@@ -73,7 +73,6 @@ function App() {
   </div>
 </nav>
 
-    <body className = "container mt-3">
         <Routes>
               <Route exact path = "/" element = {<Home />}/>
               <Route exact path = "/coffeeHouse" element = {<CoffeeHouseList/>}/>
@@ -90,7 +89,6 @@ function App() {
                 element={<LoginWrapper/>}
               />
         </Routes>
-    </body>
 
       <footer className="text-dark text-center border-top" style={{backgroundColor:"rgba(0, 0, 0, 0.025)"}}>
         <div className="container p-4 pb-0">
