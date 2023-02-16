@@ -54,7 +54,7 @@ const AddReview = (props) => {
 
   }
   return (
-    <body className = "container mt-3">
+    <article className = "container mt-3">
       {props.user ? (
         <div className = "submit-form">
           {submitted?(
@@ -93,7 +93,7 @@ const AddReview = (props) => {
         Please log in.
       </div>
       )}
-    </body>
+    </article>
   );
 }
 

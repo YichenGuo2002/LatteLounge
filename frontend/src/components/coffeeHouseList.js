@@ -57,9 +57,9 @@ const CoffeeHouseList = (props) => {
     })
   }
 
-  const refreshList = () =>{
+  /* const refreshList = () =>{
     retrieveCoffeeHouse()
-  }
+  }*/
 
   const find = (page = 1) => {
     CoffeeHouseDataService.find(query, page - 1)
@@ -106,7 +106,7 @@ const CoffeeHouseList = (props) => {
   }
 
   const paginationWrapper = () =>{
-    let pagination = (
+    return (
       <>
       {page === 1?(
         <li className="page-item disabled">
@@ -114,13 +114,13 @@ const CoffeeHouseList = (props) => {
         </li>
       ):(
         <li className="page-item">
-          <a className="page-link" onClick={find(page-1)}>Previous</a>
+          <a className="page-link" onClick={() => find(page-1)}>Previous</a>
         </li>
       )}
       {
         pagination.pages.map((eachPage, index) =>{
           return(
-            <li className="page-item" key={index}><a className="page-link" onClick={find(eachPage)}>{eachPage}</a></li>
+            <li className="page-item" key={index}><a className="page-link" onClick={() => find(eachPage)}>{eachPage}</a></li>
           )
         }
         )
@@ -131,7 +131,7 @@ const CoffeeHouseList = (props) => {
         </li>
       ):(
         <li className="page-item">
-          <a className="page-link" onClick={find(page+1)}>Next</a>
+          <a className="page-link" onClick={() => find(page+1)}>Next</a>
         </li>
       )}
       </>
@@ -157,7 +157,7 @@ const CoffeeHouseList = (props) => {
 
 
   return (
-    <body className = "container mt-3">
+    <article className = "container mt-3">
 <div className="input-group">
   <input 
   type="text" 
@@ -201,7 +201,7 @@ const CoffeeHouseList = (props) => {
     </ul>
   </nav>
 </div>
-    </body>
+    </article>
   );
 }
 

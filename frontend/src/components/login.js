@@ -22,7 +22,7 @@ const Login = (props) => {
   }
 
   return (
-    <body className = "container mt-3">
+    <article className = "container mt-3">
       <form>
       <div className="form-group">
           <label htmlFor="inputName">Name</label>
@@ -46,7 +46,7 @@ const Login = (props) => {
       <p>  </p>
       <button type="submit" className="btn btn-primary" onClick={loginFunc}>Login</button>
     </form>
-    </body>
+    </article>
   );
 }
 

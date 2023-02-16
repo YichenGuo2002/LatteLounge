@@ -27,7 +27,7 @@ const CoffeeHouse = (props) => {
     })
   }
 
-  useEffect((props) => {
+  useEffect(() => {
     getCoffeeHouse(id)
   }, [id])
 
@@ -47,7 +47,7 @@ const CoffeeHouse = (props) => {
   }
 
   return(
-    <body className = "container mt-3">
+    <article className = "container mt-3">
       {coffeeHouse?(
         <div className="card mb-3">
         <img className="card-img-top" src={cafe} alt="Card cap"/>
@@ -100,7 +100,7 @@ const CoffeeHouse = (props) => {
           <p>No restaurant selected.</p>
         </div>
       )}
-    </body>
+    </article>
   )
 }
 

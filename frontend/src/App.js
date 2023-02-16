@@ -1,5 +1,5 @@
 import React from "react"
-import {Routes, Route, Link, useParams} from "react-router-dom"
+import {Routes, Route, Link} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap/dist/js/bootstrap.js'
 
@@ -37,7 +37,7 @@ function App() {
     <div>
       <nav className ="navbar navbar-expand-lg bg-primary-subtle">
   <div className ="container-fluid">
-    <a href = {"/"}><img src={logo} width="40" height="40" class="d-inline-block" alt="Logo"/></a>
+    <a href = {"/"}><img src={logo} width="40" height="40" className="d-inline-block" alt="Logo"/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span className ="navbar-toggler-icon"></span>
     </button>
