@@ -17,10 +17,10 @@ db.once('open', () =>{
     console.log('Database connected.')
 })
 
-const fetchYelp = async() =>{
+const fetchYelp = async(location) =>{
     return await fetch('https://api.yelp.com/v3/businesses/search?' + new URLSearchParams({
-        location: 'NYC',
-        term: 'cafe',
+        location: location,
+        term: 'coffee',
         limit: 50
     }), {
         // Adding method type
@@ -39,17 +39,17 @@ const fetchYelp = async() =>{
         })
 }
 
-const processYelp = async() =>{
-    const resultYelp = await fetchYelp()
+const processYelp = async(location) =>{
+    const resultYelp = await fetchYelp(location)
     console.log('trying')
     for(const businessKey in resultYelp.businesses){
         console.log(resultYelp.businesses[businessKey])
     }
 }
 
-const seedDB = async() =>{
-    await coffeeHouseCollection.deleteMany({}) // delete all instances
-    const resultYelp = await fetchYelp()
+const seedDB = async(location) =>{
+    // await coffeeHouseCollection.deleteMany({}) // delete all instances
+    const resultYelp = await fetchYelp(location)
 
     for(const businessKey in resultYelp.businesses){
         let business = resultYelp.businesses[businessKey]
@@ -74,11 +74,12 @@ const seedDB = async() =>{
             description: `${categoryDescription}`,
             location: `${business.phone}`,
             review:`${business.rating}`,
-            image_url:`${business.image_url.replaceAll("/", "&#x2f;")}`
+            image_url:`${business.image_url}`
         })
-        console.log(business.image_url.replaceAll("/", "&#x2f;"))
+        console.log(business.image_url)
         await newCoffeeHouse.save()
     }   
 }
 
-await processYelp()
+// await processYelp('Times Square')
+await seedDB('Times Square')

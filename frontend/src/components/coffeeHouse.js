@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import CoffeeHouseDataService from "../services/coffeeHouse"
 import {Link, useParams} from "react-router-dom"
-import cafe from "../Cafe_de_Flore.jpg"
 
 const CoffeeHouse = (props) => {
   const initialCoffeeHouseState = {
@@ -50,7 +49,7 @@ const CoffeeHouse = (props) => {
     <article className = "container mt-3">
       {coffeeHouse?(
         <div className="card mb-3">
-        <img className="card-img-top" src={cafe} alt="Card cap"/>
+        <img className="card-img-top max-height-image-article object-fit-cover" src={coffeeHouse.image_url} alt="Card cap"/>
         <div className="card-body">
           <h5 className="card-title">{coffeeHouse.name}</h5>
           <p className="card-subtitle">{coffeeHouse.location}</p>

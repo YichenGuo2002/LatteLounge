@@ -6,7 +6,8 @@ const coffeeHouseSchema = new Schema({
     price: String,
     description: String,
     location: String,
-    review: String
+    review: String,
+    image_url: String
 })
 
 const reviewSchema = new Schema({

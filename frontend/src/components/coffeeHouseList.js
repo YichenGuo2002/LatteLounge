@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react"
 import CoffeeHouseDataService from "../services/coffeeHouse"
 import {Link} from "react-router-dom"
 import "../index.css"
-import cafe from "../Cafe_de_Flore.jpg"
 import paginateResult from "../services/pagination"
 
 const CoffeeHouseList = (props) => {
@@ -68,6 +67,7 @@ const CoffeeHouseList = (props) => {
       setCoffeeHouse(response.data.coffee_houses)
       setPage(response.data.page + 1)
       setTotalResults(response.data.total_results)
+      window.scrollTo(0,0);
     })
     .catch(e =>{
       console.log(e)
@@ -89,15 +89,15 @@ const CoffeeHouseList = (props) => {
       return(
         <div className = "col" key = {index}>
           <div className="card h-100 border-primary dark mb-3">
-        <img className="card-img-top" src={cafe} alt="Card cap"/>
+          <img className="card-img-top max-height-image-card object-fit-cover" src={eachCoffeeHouse.image_url} alt="Card cap"/>
           <div className="card-body text-dark">
-        <h5 className="card-title">{eachCoffeeHouse.name}</h5>
-        <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.location}</h6>
-        <p className="card-text">Description: {eachCoffeeHouse.description}</p>
-        <p className="card-title">Price Range: {eachCoffeeHouse.price}</p>
-        <Link to={"/coffeeHouse/"+eachCoffeeHouse._id} className="btn btn-primary">
+          <h5 className="card-title">{eachCoffeeHouse.name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.location}</h6>
+          <p className="card-text">Description: {eachCoffeeHouse.description}</p>
+          <p className="card-title">Price Range: {eachCoffeeHouse.price}</p>
+          <Link to={"/coffeeHouse/"+eachCoffeeHouse._id} className="btn btn-primary">
           View Reviews
-        </Link>
+          </Link>
       </div>
     </div>
     </div>)
