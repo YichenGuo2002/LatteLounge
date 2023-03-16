@@ -52,12 +52,17 @@ const CoffeeHouse = (props) => {
         <img className="card-img-top max-height-image-article object-fit-cover" src={coffeeHouse.image_url} alt="Card cap"/>
         <div className="card-body">
           <h5 className="card-title">{coffeeHouse.name}</h5>
-          <p className="card-subtitle">{coffeeHouse.location}</p>
-          <p className="card-text">Description: {coffeeHouse.description}</p>
+          <h5 className="card-subtitle mb-2 text-muted">{coffeeHouse.location}</h5>
+          {coffeeHouse.phone == "N/A" ?(<></>):(
+            <h5 className="card-subtitle mb-2 text-muted">{coffeeHouse.phone}</h5>
+          )}
+          <p className="card-text">Categories: {coffeeHouse.categories}</p>
           <p className="card-text">Price Range: {coffeeHouse.price}</p>
+          <p className="card-text">Transactions: {coffeeHouse.transactions}</p>
           <Link to={"/coffeeHouse/"+id+"/review"} className="btn btn-primary">
           Add Review
           </Link>
+          <a href={coffeeHouse.url} className="btn btn-primary m-1">Yelp Review</a>
           <p className = "card-text"> </p>
           <p className = "card-text">Reviews:</p>
           <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">

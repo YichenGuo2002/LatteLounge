@@ -48,13 +48,19 @@ const processYelp = async(location) =>{
 }
 
 const seedDB = async(location) =>{
-    // await coffeeHouseCollection.deleteMany({}) // delete all instances
+    await coffeeHouseCollection.deleteMany({}) // delete all instances
     const resultYelp = await fetchYelp(location)
 
     for(const businessKey in resultYelp.businesses){
         let business = resultYelp.businesses[businessKey]
         let categoryDescription = ""
         let price = ""
+        let locationDescription = ""
+        let phone = ""
+        let transactionDescription = business.transactions.reduce((accumulator, type) => {
+            return accumulator + type + " "
+        }, "dine-in ")
+        transactionDescription = transactionDescription.slice(0, transactionDescription.length - 1)
         for(const categoryKey in business.categories){
             let category = business.categories[categoryKey]
             categoryDescription += category.title + ", "
@@ -62,19 +68,39 @@ const seedDB = async(location) =>{
         if(categoryDescription[categoryDescription.length - 2] == ","){
             categoryDescription = categoryDescription.slice(0, categoryDescription.length - 2) + '.'
         }
+        for(const locationKey in business.location.display_address){
+            let location = business.location.display_address[locationKey]
+            if(location){
+                locationDescription += location + ", "
+            }
+        }
+        if(locationDescription[locationDescription.length - 2] == ","){
+            locationDescription = locationDescription.slice(0, locationDescription.length - 2) + '.'
+        }
         if(business.price){
             price = business.price
         }else{
             price = "N/A"
         }
+        if(business.display_phone){
+            phone = business.display_phone
+        }else if(business.phone){
+            phone = business.phone
+        }else{
+            phone = 'N/A'
+        }
 
         const newCoffeeHouse = new coffeeHouseCollection({
             name: `${business.name}`,
             price: `${price}`,
-            description: `${categoryDescription}`,
-            location: `${business.phone}`,
-            review:`${business.rating}`,
-            image_url:`${business.image_url}`
+            categories: `${categoryDescription}`,
+            location: `${locationDescription}`,
+            review:`${business.rating} (${business.review_count})`,
+            image_url:`${business.image_url}`,
+            phone: `${phone}`,
+            yelp_id: `${business.id}`,
+            transactions: `${transactionDescription}`,
+            url: `${business.url}`
         })
         console.log(business.image_url)
         await newCoffeeHouse.save()

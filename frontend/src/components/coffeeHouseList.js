@@ -93,8 +93,12 @@ const CoffeeHouseList = (props) => {
           <div className="card-body text-dark">
           <h5 className="card-title">{eachCoffeeHouse.name}</h5>
           <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.location}</h6>
-          <p className="card-text">Description: {eachCoffeeHouse.description}</p>
-          <p className="card-title">Price Range: {eachCoffeeHouse.price}</p>
+          {eachCoffeeHouse.phone == "N/A" ?(<></>):(
+            <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.phone}</h6>
+          )}
+          <p className="card-text">Categories: {eachCoffeeHouse.categories}</p>
+          <p className="card-text">Price Range: {eachCoffeeHouse.price}</p>
+          <p className="card-text">Transactions: {eachCoffeeHouse.transactions}</p>
           <Link to={"/coffeeHouse/"+eachCoffeeHouse._id} className="btn btn-primary">
           View Reviews
           </Link>
