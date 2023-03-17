@@ -40,6 +40,7 @@ const CoffeeHouseList = (props) => {
       setCoffeeHouse(response.data.coffee_houses)
       setPage(response.data.page + 1)
       setTotalResults(response.data.total_results)
+      setQuery({})
     })
     .catch(e =>{
       console.log(e)
@@ -187,6 +188,7 @@ const CoffeeHouseList = (props) => {
 </div>
 <div className="input-group mb-3">
     <button className="btn btn-outline-primary" onClick={findBy} type="button">Filter</button>
+    <button className="btn btn-outline-primary" onClick={retrieveCoffeeHouse} type="button">See All</button>
   </div>
 
 <p>Found {totalResults} search results, {pagination.totalPages} pages.</p>

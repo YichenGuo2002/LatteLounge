@@ -64,7 +64,7 @@ const CoffeeHouse = (props) => {
           </Link>
           <a href={coffeeHouse.url} className="btn btn-primary m-1">Yelp Review</a>
           <p className = "card-text"> </p>
-          <p className = "card-text">Reviews:</p>
+          <p className = "card-text">LatteLounge Reviews:</p>
           <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             {coffeeHouse.reviews && coffeeHouse.reviews.length > 0? (
               coffeeHouse.reviews.map((review, index) => {
