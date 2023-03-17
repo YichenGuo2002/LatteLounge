@@ -48,7 +48,7 @@ const processYelp = async(location) =>{
 }
 
 const seedDB = async(location) =>{
-    await coffeeHouseCollection.deleteMany({}) // delete all instances
+    //await coffeeHouseCollection.deleteMany({}) // delete all instances
     const resultYelp = await fetchYelp(location)
 
     for(const businessKey in resultYelp.businesses){
@@ -107,5 +107,68 @@ const seedDB = async(location) =>{
     }   
 }
 
+const citiesList = [
+    "New York",
+    "Los Angeles",
+    "Chicago",
+    "Houston",
+    "Phoenix",
+    "Philadelphia",
+    "San Antonio",
+    "San Diego",
+    "Dallas",
+    "San Jose",
+    "Austin",
+    "Jacksonville",
+    "Fort Worth",
+    "Columbus",
+    "San Francisco",
+    "Charlotte",
+    "Indianapolis",
+    "Seattle",
+    "Denver",
+    "Washington",
+    "Boston",
+    "Nashville",
+    "El Paso",
+    "Detroit",
+    "Memphis",
+    "Portland",
+    "Oklahoma City",
+    "Las Vegas",
+    "Louisville",
+    "Baltimore",
+    "Milwaukee",
+    "Albuquerque",
+    "Tucson",
+    "Fresno",
+    "Sacramento",
+    "Mesa",
+    "Atlanta",
+    "Kansas City",
+    "Colorado Springs",
+    "Miami",
+    "Raleigh",
+    "Omaha",
+    "Long Beach",
+    "Virginia Beach",
+    "Oakland",
+    "Minneapolis",
+    "Tulsa",
+    "Wichita",
+    "New Orleans",
+    "Arlington",
+    "Tampa",
+    "Honolulu"
+  ];
+  
 // await processYelp('Times Square')
-await seedDB('Times Square')
+const seedCities = async() =>{
+    await coffeeHouseCollection.deleteMany({}) 
+    for(const cityKey in citiesList){
+        await seedDB(citiesList[cityKey])
+        console.log(`Successfully seeded ${citiesList[cityKey]}`)
+    }
+}
+
+await seedCities()
