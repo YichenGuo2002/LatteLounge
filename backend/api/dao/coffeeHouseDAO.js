@@ -22,26 +22,19 @@ export default class coffeeHouseDAO{
     let query = {}
     if(filters){ // Mongodb queries
         if(filters['name']){
-            query['$search'] = {
-                index: "name",
-                text: {
-                  query: filters['name'],
-                  path: "name"
-                }
-            }
+            query['name'] = {$regex:filters['name']}
         }
         if(filters['price']){
             query['price'] = {$eq: filters['price']}
         }
         if(filters['location']){
-            query['$text'] = {$search: filters['location']}
+            query['location'] = {$regex:filters['location']}
         }
     }
 
     let cursor
     
     try{
-        console.log(JSON.stringify(query))
         cursor = await coffeeHouses
         .find(query).limit(coffeeHousesPerPage).skip(coffeeHousesPerPage * page)
     } catch(e){
