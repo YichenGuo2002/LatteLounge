@@ -126,8 +126,8 @@ function App() {
 
         <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.25)"}}>
           © 2023 Copyright: <a href="https://www.yichenguo.com/" style={{textDecoration:"none"}}>Yichen Guo</a>. 
-          [<a href="https://www.yichenguo.com/" style={{textDecoration:"none"}}>Github</a>] 
-          [<a href="https://www.yichenguo.com/" style={{textDecoration:"none"}}>LinkedIn</a>]
+          [<a href="https://github.com/YichenGuo2002/LatteLounge" style={{textDecoration:"none"}}>Github</a>] 
+          [<a href="https://www.linkedin.com/in/2002yichenguo/" style={{textDecoration:"none"}}>LinkedIn</a>]
         </div>
       </footer>
     </div>

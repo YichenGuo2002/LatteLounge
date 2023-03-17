@@ -60,7 +60,7 @@ const AddReview = (props) => {
           {submitted?(
             <div>
               <h4>You submitted successfully!</h4>
-              <Link to={"/coffeeHouse/"+id}>
+              <Link to={"/coffeeHouse/"+id} className = "btn btn-primary m-2">
                 Back to Coffee House
               </Link>
             </div>
@@ -83,7 +83,7 @@ const AddReview = (props) => {
                 <button 
                 type="submit" 
                 onClick={saveReview}
-                className="btn btn-primary">Submit</button>
+                className="btn btn-primary mt-2">Submit</button>
               </form>
             </div>
           )}

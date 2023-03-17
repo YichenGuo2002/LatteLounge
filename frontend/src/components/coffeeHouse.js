@@ -91,7 +91,7 @@ const CoffeeHouse = (props) => {
               })
             ) : (
               <div className = "col-sm-4">
-                <p> No reviews yet. Try post one!</p>
+                <p className="card-text"> No reviews yet. Try post one!</p>
               </div>
             )}
           </div>

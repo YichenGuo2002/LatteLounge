@@ -193,10 +193,7 @@ const CoffeeHouseList = (props) => {
 
 <p>Found {totalResults} search results, {pagination.totalPages} pages.</p>
 <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-
     {cardDeckWrapper()}
-
-
 </div>
 
 <div className = "container mt-3">
@@ -206,6 +203,13 @@ const CoffeeHouseList = (props) => {
       <li className="page-item disabled"><a className="page-link" >We are at page {page}</a></li>
     </ul>
   </nav>
+</div>
+
+<div className = "container mt-3">
+  <p>Recommended for you:</p>
+  <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    {}
+</div>
 </div>
     </article>
   );
