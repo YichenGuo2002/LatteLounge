@@ -13,6 +13,7 @@ router
 .delete(reviewCtrl.apiDeleteReview)
 
 router.route("/id/:id").get(coffeeHouseCtrl.apiGetCoffeeHouseById)
+router.route("/rec/:size").get(coffeeHouseCtrl.apiGetCoffeeHouseBySizeR)
 router.route("/price").get(coffeeHouseCtrl.apiGetCoffeeHouseByPrice)
 
 export default router

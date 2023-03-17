@@ -106,5 +106,15 @@ export default class coffeeHouseDAO{
         return price
     }
    }
+
+   static async getCoffeeHouseRandom(sizeR){
+    let list = []
+    try{
+        return await coffeeHouses.aggregate([{$sample:{size: sizeR}}])
+    }catch(e){
+        console.log(`Something went wrong in get coffee house randomly: ${e}`)
+        return list
+    }
+   }
 }
 

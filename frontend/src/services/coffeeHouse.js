@@ -37,6 +37,10 @@ class CoffeeHouseDataService{
     getPrice(id){
         return http.get(`/price`)
     }
+
+    getRec(size = 5){
+        return http.get(`/rec/${size}`)
+    }
 }
 
 export default new CoffeeHouseDataService

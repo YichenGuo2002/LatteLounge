@@ -13,6 +13,7 @@ const CoffeeHouseList = (props) => {
   const [totalResults, setTotalResults] = useState()
   const [query, setQuery] = useState({})
   const [price, setPrice] = useState(["All Price"])
+  const [rec, setRec] = useState([])
   const [pagination, setPagination] = useState({
     totalPages:3,
     pages:[1,2,3]
@@ -57,6 +58,15 @@ const CoffeeHouseList = (props) => {
     })
   }
 
+  const retrieveRec = () =>{
+    CoffeeHouseDataService.getRec(3)
+    .then(response => {
+      setRec(response.data)
+    }).catch(e =>{
+      console.log(e)
+    })
+  }
+
   /* const refreshList = () =>{
     retrieveCoffeeHouse()
   }*/
@@ -87,6 +97,31 @@ const CoffeeHouseList = (props) => {
 
   const cardDeckWrapper = () => {
    const cardDeck = coffeeHouse?.map((eachCoffeeHouse, index) => {
+      return(
+        <div className = "col" key = {index}>
+          <div className="card h-100 border-primary dark mb-3">
+          <img className="card-img-top max-height-image-card object-fit-cover" src={eachCoffeeHouse.image_url} alt="Card cap"/>
+          <div className="card-body text-dark">
+          <h5 className="card-title">{eachCoffeeHouse.name}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.location}</h6>
+          {eachCoffeeHouse.phone == "N/A" ?(<></>):(
+            <h6 className="card-subtitle mb-2 text-muted">{eachCoffeeHouse.phone}</h6>
+          )}
+          <p className="card-text">Categories: {eachCoffeeHouse.categories}</p>
+          <p className="card-text">Price Range: {eachCoffeeHouse.price}</p>
+          <p className="card-text">Transactions: {eachCoffeeHouse.transactions}</p>
+          <Link to={"/coffeeHouse/"+eachCoffeeHouse._id} className="btn btn-primary">
+          View Reviews
+          </Link>
+      </div>
+    </div>
+    </div>)
+    })
+    return cardDeck
+  }
+
+  const cardRecWrapper = () =>{
+    const cardDeck = rec?.map((eachCoffeeHouse, index) => {
       return(
         <div className = "col" key = {index}>
           <div className="card h-100 border-primary dark mb-3">
@@ -150,6 +185,7 @@ const CoffeeHouseList = (props) => {
   useEffect(() => {
     retrieveCoffeeHouse()
     retrievePrice()
+    retrieveRec()
   }, [])
 
   useEffect(() =>{
@@ -205,10 +241,10 @@ const CoffeeHouseList = (props) => {
   </nav>
 </div>
 
-<div className = "container mt-3">
-  <p>Recommended for you:</p>
+<div className = "container mt-3 mb-3">
+  <p>Specially recommended for you:</p>
   <div className = "row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-    {}
+    {cardRecWrapper()}
 </div>
 </div>
     </article>

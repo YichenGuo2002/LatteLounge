@@ -58,4 +58,15 @@ export default class coffeeHouseCtrl{
             res.status(500).json({error:e})
         }
     }
+
+    static async apiGetCoffeeHouseBySizeR(req, res, next){
+        try{
+            let sizeR = parseInt(req.params.size) || 5
+            let list = await coffeeHouseDAO.getCoffeeHouseRandom(sizeR)
+            res.json(list)
+        }catch(e){
+            console.log(`api, ${e}`)
+            res.status(500).json({error:e})
+        }
+    }
 }
