@@ -11,6 +11,11 @@ LatteLounge is a website where users can browse and post reviews about local cof
 This project was created using Node.js, Express, MongoDB, React.js, Python Scikit Learn, Axios and Bootstrap. Jw-pagination.js was used to create pagination. Yelp API was used to fetch nationwide coffee house data.
 
 ## Features
+
+<img width="50%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/list_pre.png?raw=true">
+
+<img width="50%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/house_pre.png?raw=true">
+
 * Users can create, edit, and remove coffee house revies
 * Clear coffee house information page with address, phone number, price range, product categories, and transaction types allowed there
 * Individualized user recommendation based on Scikit Learn
