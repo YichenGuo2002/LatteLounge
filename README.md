@@ -2,7 +2,7 @@
 
 <a href="https://my-campground.herokuapp.com/">
  <p align="center">
-  <img src="https://i.imgur.com/F6IiDsR.png?w="350" alt="Campground"
+  <img src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/presentation.png?raw=true" alt="LatteLounge"
  </p>
 </a>
 
