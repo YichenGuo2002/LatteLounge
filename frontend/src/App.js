@@ -35,8 +35,8 @@ function App() {
 
   return (
     <div>
-      <nav className ="navbar navbar-expand-lg bg-primary-subtle">
-  <div className ="container-fluid">
+      <nav className ="navbar navbar-expand-lg" style={{backgroundColor: "rgba(0, 0, 0, 0.25)"}}>
+    <div className ="container-fluid">
     <a href = {"/"}><img src={logo} width="40" height="40" className="d-inline-block" alt="Logo"/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span className ="navbar-toggler-icon"></span>

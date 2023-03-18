@@ -61,10 +61,12 @@ main {
 }
 
 .max-height-image-card{
-  max-height: 350px;
+  max-height: 450px;
+  object-fit: cover;
 }
 
 .max-height-image-article{
   max-height: 700px;
+  object-fit: cover;
 }
 
