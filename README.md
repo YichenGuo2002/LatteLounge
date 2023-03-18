@@ -1,4 +1,4 @@
-# :coffee: YelpCamp
+# :coffee: LatteLounge
 
 <a href="https://my-campground.herokuapp.com/">
  <p align="center">
@@ -6,9 +6,9 @@
  </p>
 </a>
 
-YelpCamp is a website where users can create and review campgrounds. In order to review or create a campground, you must have an account. This project was part of Colt Steele's web dev course on udemy.  
+LatteLounge is a website where users can browse and post reviews about local coffee houses. It also features individualized recommendation based on your preferences. In order to review or modify previous posts, you must first log in to your account.
 
-This project was created using Node.js, Express, MongoDB, and Bootstrap. Passport.js was used to handle authentication.  
+This project was created using Node.js, Express, MongoDB, React.js, Axios and Bootstrap. Jw-pagination.js was used to create pagination.  
 
 ## Features
 * Users can create, edit, and remove campgrounds
