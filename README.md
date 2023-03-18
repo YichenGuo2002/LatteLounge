@@ -2,20 +2,20 @@
 
 <a href="https://my-campground.herokuapp.com/">
  <p align="center">
-  <img src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/presentation.png?raw=true" alt="LatteLounge"
+  <img src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/presentation.png?raw=true" alt="LatteLounge"/>
  </p>
 </a>
 
 LatteLounge is a website where users can browse and post reviews about local coffee houses. It also features individualized recommendation based on your preferences. In order to review or modify previous posts, you must first log in to your account.
 
-This project was created using Node.js, Express, MongoDB, React.js, Axios and Bootstrap. Jw-pagination.js was used to create pagination.  
+This project was created using Node.js, Express, MongoDB, React.js, Python Scikit Learn, Axios and Bootstrap. Jw-pagination.js was used to create pagination. Yelp API was used to fetch nationwide coffee house data.
 
 ## Features
-* Users can create, edit, and remove campgrounds
-* Users can review campgrounds once, and edit or remove their review
-* User profiles include more information on the user (full name, email, phone, join date), their campgrounds, and the option to edit their profile or delete their account
-* Search campground by name or location
-* Sort campgrounds by highest rating, most reviewed, lowest price, or highest price
+* Users can create, edit, and remove coffee house revies
+* Clear coffee house information page with address, phone number, price range, product categories, and transaction types allowed there
+* Individualized user recommendation based on Scikit Learn
+* Search campground by name, location, and price range
+* Direct ink to yelp coffee house page
 
 ## Run it locally
 1. Install [mongodb](https://www.mongodb.com/)
