@@ -12,9 +12,9 @@ This project was created using Node.js, Express, MongoDB, React.js, Python Sciki
 
 ## Features
 
-<img width="50%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/list_pre.png?raw=true">
+<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/list_pre.png?raw=true">
 
-<img width="50%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/house_pre.png?raw=true">
+<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/house_pre.png?raw=true">
 
 * Users can create, edit, and remove coffee house revies
 * Clear coffee house information page with address, phone number, price range, product categories, and transaction types allowed there
