@@ -13,9 +13,9 @@ This project was developed using a range of full-stack technologies, including N
 
 ## Features
 
-<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/list_pre.png?raw=true">
+<img width="100%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/list_pre.png?raw=true">
 
-<img width="75%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/house_pre.png?raw=true">
+<img width="100%" alt="Sudoku_w_ease_home_demo" src="https://github.com/YichenGuo2002/LatteLounge/blob/main/frontend/public/house_pre.png?raw=true">
 
 * Users can create, edit, and delete coffee house reviews after they log in to the app.
 * The app provides a clear and comprehensive information page for each coffee house, including its address, phone number, price range, product categories, and accepted transaction types.
